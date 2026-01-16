@@ -21,3 +21,4 @@ F = (A AND B) OR (NOT C)
 
 ## Author
 Taghreed EialSalman
+
