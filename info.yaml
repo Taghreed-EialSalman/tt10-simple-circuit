@@ -1,25 +1,25 @@
 project:
-  title: "NAND Gate"
+  title: "Simple Circuit F = AB + C'"
   author: "Taghreed EialSalman"
-  description: "2-input NAND gate implemented using TinyTapeout"
+  description: "Combinational logic implementing F = AB + C' using TinyTapeout"
   language: "Verilog"
   clock_hz: 0
   tiles: "1x1"
-  top_module: "tt_um_taghreed_eialsalman_nand"
+  top_module: "tt_um_taghreed_eialsalman_simple_circuit"
   source_files:
-    - "tt_um_taghreed_eialsalman_nand.v"
+    - "tt_um_taghreed_eialsalman_simple_circuit.v"
 
 pinout:
   ui[0]: "A"
   ui[1]: "B"
-  ui[2]: ""
+  ui[2]: "C"
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
   ui[6]: ""
   ui[7]: ""
 
-  uo[0]: "Y"
+  uo[0]: "F"
   uo[1]: ""
   uo[2]: ""
   uo[3]: ""
