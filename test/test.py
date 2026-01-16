@@ -1,28 +1,25 @@
+import random
 import cocotb
-from cocotb.clock import Clock
-from cocotb.triggers import ClockCycles
+from cocotb.triggers import Timer
 
 @cocotb.test()
 async def test_project(dut):
-    clock = Clock(dut.clk, 10, units="us")
-    cocotb.start_soon(clock.start())
+    # Simple Circuit: F = AB + C'
+    # Inputs: A=ui_in[0], B=ui_in[1], C=ui_in[2]
+    # Output: F=uo_out[0]
 
-    dut.ena.value = 1
-    dut.ui_in.value = 0
-    dut.uio_in.value = 0
-    dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 5)
-    dut.rst_n.value = 1
+    for _ in range(50):
+        A = random.randint(0, 1)
+        B = random.randint(0, 1)
+        C = random.randint(0, 1)
 
-    vectors = [
-        (0,0,1),
-        (0,1,1),
-        (1,0,1),
-        (1,1,0),
-    ]
+        # Build ui_in value
+        ui = (A << 0) | (B << 1) | (C << 2)
+        dut.ui_in.value = ui
 
-    for A,B,Yexp in vectors:
-        dut.ui_in[0].value = A
-        dut.ui_in[1].value = B
-        await ClockCycles(dut.clk, 1)
-        assert int(dut.uo_out[0].value) == Yexp
+        await Timer(1, units="ns")
+
+        Fexp = (A & B) | (1 - C)   # since C is 0/1, C' = 1-C
+
+        assert int(dut.uo_out[0].value) == Fexp, \
+            f"Mismatch: A={A} B={B} C={C} => expected F={Fexp}, got {int(dut.uo_out[0].value)}"
