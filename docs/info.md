@@ -1,25 +1,23 @@
-# NAND Gate
+# Simple Circuit: F = AB + C'
 
 ## Project Overview
-This project implements a **2-input NAND gate** using the TinyTapeout open-source ASIC flow.
-The design is written in Verilog and verified using cocotb-based simulation before GDS generation.
+This project implements a simple combinational logic circuit using TinyTapeout.
 
 ## Functionality
-The NAND gate outputs logic LOW only when both inputs are HIGH.  
-For all other input combinations, the output is HIGH.
+The circuit computes:
+F = (A AND B) OR (NOT C)
 
 ## Inputs and Outputs
-- **Inputs**
+- Inputs:
   - A (ui[0])
   - B (ui[1])
+  - C (ui[2])
+- Output:
+  - F (uo[0])
 
-- **Output**
-  - Y = ~(A & B) (uo[0])
-
-## Design Notes
-- The design is purely combinational.
-- No clock is required.
-- Unused inputs and outputs are safely tied off.
+## Notes
+- Purely combinational design
+- No clock required
 
 ## Author
 Taghreed EialSalman
