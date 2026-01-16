@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_taghreed_eialsalman_nand (
+module tt_um_taghreed_eialsalman_simple_circuit (
     input  wire [7:0] ui_in,
     output wire [7:0] uo_out,
     input  wire [7:0] uio_in,
@@ -13,15 +13,16 @@ module tt_um_taghreed_eialsalman_nand (
 
     wire A = ui_in[0];
     wire B = ui_in[1];
+    wire C = ui_in[2];
 
-    wire Y = ~(A & B);
+    wire F = (A & B) | (~C);
 
-    assign uo_out[0] = Y;
+    assign uo_out[0] = F;
     assign uo_out[7:1] = 7'b0;
 
     assign uio_out = 8'b0;
     assign uio_oe  = 8'b0;
 
-    wire _unused = &{ena, clk, rst_n, ui_in[7:2], uio_in, 1'b0};
+    wire _unused = &{ena, clk, rst_n, ui_in[7:3], uio_in, 1'b0};
 
 endmodule
