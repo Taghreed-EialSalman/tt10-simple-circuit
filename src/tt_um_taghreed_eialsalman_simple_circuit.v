@@ -10,7 +10,7 @@ module tt_um_taghreed_eialsalman_simple_circuit (
     input  wire       clk,
     input  wire       rst_n
 );
-
+    
     wire A = ui_in[0];
     wire B = ui_in[1];
     wire C = ui_in[2];
